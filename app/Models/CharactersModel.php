@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
 use App\Repos\Characters;
+use CodeIgniter\Model;
 
 class CharactersModel extends Model
 {
@@ -13,28 +13,28 @@ class CharactersModel extends Model
     protected $validationRules = [];
     protected $validationMessages = [];
     protected $skipValidation = false;
-    public function retrieveCharacterInfo($searchPar=[],
-        $orderBy = false,
-        $limit = false,
-        $offset = false,
-        $count = false
+
+    /**
+     * Process raw post
+     * @param array $searchPar
+     * @return false
+     */
+    public function retrieveCharacterInfo(
+        $searchPar = []
     ) {
-        $searchArr=[];
-        if(isset($searchPar[0])) {
+        $searchArr = [];
+        if (isset($searchPar[0])) {
             foreach ($searchPar[0] as $key => $val) {
                 if ($val != '') {
                     $searchArr[$key] = trim(urldecode($val));
                 }
             }
         }
-       // Call service
-        $charObj=new Characters();
+        // Call service
+        $charObj = new Characters();
         return $charObj->getCharacters($searchArr);
 
     }
-
-
-
 
 
 }

@@ -9,11 +9,11 @@ use CodeIgniter\API\ResponseTrait;
 class Home extends BaseGlobalController
 {
     use ResponseTrait;
-    public function __construct()
-    {
 
-    }
-
+    /**
+     * Main index/default method
+     * @return string
+     */
     public function index()
     {
         $charModelObj = new CharactersModel();
@@ -23,6 +23,10 @@ class Home extends BaseGlobalController
         return view("welcome_message", $data);
     }
 
+    /**
+     * Method to Load searched/More results
+     * @return mixed
+     */
 
     function ajaxBasicPaginationResponse()
     {
